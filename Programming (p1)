@@ -1,0 +1,29 @@
+// Problem1:
+// Check whether a given array is in increasing order.
+// Example: {22, 2, 3, 4, 5, 6} -> false, {1, 2, 3, 4, 5, 6} -> true
+
+// Solution:
+// An array is in increasing order if each element is less than the next.
+// Loop from the first to the second-last element.
+// If any element is greater than the next, return false.
+// If the loop completes without finding such a case, return true.
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool isIncreasing(vector <int> &v)
+{
+    for (int i = 0; i < v.size() - 1; i++){
+        if (v[i] > v[i + 1]) return false;
+    }
+    return true;
+}
+int main ()
+{
+    vector <int> vNumbers = {22, 2, 3, 4, 5, 6};
+    cout << boolalpha << isIncreasing(vNumbers) << endl; // false
+    vNumbers = {1, 2, 3, 4, 5, 6};
+    cout << boolalpha << isIncreasing(vNumbers) << endl; // true
+    // boolalpha for converting 1 -> true or 0 -> false
+}
