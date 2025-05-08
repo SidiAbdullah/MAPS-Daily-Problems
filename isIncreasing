@@ -27,3 +27,4 @@ int main ()
     cout << boolalpha << isIncreasing(vNumbers) << endl; // true
     // boolalpha for converting 1 -> true or 0 -> false
 }
+// written by Sidi Abdullah Lemrabott (MAPS)
