@@ -1,43 +1,55 @@
-// Problem: Combine two vectors by adding corresponding elements,
+// 🧠 Problem: Combine two vectors by adding corresponding elements.
 // If one vector is longer, append the remaining elements as-is.
+//
 // Example:
 // v1 = {4, 2, 1}
 // v2 = {1, 5, 3, 2, 6}
 // Result: {4+1, 2+5, 1+3, 2, 6} => {5, 7, 4, 2, 6}
-// solution:
-// we want a vector like this : {v1[0] + v2[0], v1[1] + v2[1], ..., v1[minSize - 1] + v2[minSize - 1], ..., v2[maxSize - 1]}.
-// such that minSize is the size of minimum vector; consedering here v2.size() >= v1.size()
+//
+// 💡 Goal:
+// Create a new vector as follows:
+// {v1[0] + v2[0], ..., v1[minSize - 1] + v2[minSize - 1], longer[minSize], ..., longer[maxSize - 1]}
+// Where minSize is the minimum size of v1, v2 and longer is the longer of them
 
-vector<int> add2vectors(vector<int> &v1, vector<int> &v2)
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<int> add2vectors(vector<int>& v1, vector<int>& v2)
 {
-    int minSize = (v1.size() < v2.size()) ? v1.size() : v2.size();
+    int minSize = min(v1.size(), v2.size());
     int maxSize = max(v1.size(), v2.size());
+    vector<int>& longer = (v1.size() > v2.size()) ? v1 : v2;
 
-    vector<int> v;
+    vector<int> result;
+
     // Add corresponding elements
-    for (int i = 0; i < minSize; i++)
-    {
-        v.push_back(v1[i] + v2[i]);
-    }
-    // Append remaining elements from the longer vector
-    vector<int> &longer = (v1.size() > v2.size()) ? v1 : v2;
-    for (int i = minSize; i < maxSize; i++)
-    {
-        v.push_back(longer[i]);
+    for (int i = 0; i < minSize; ++i) {
+        result.push_back(v1[i] + v2[i]);
     }
 
-    return v;
+    // Append remaining elements from the longer vector
+    for (int i = minSize; i < maxSize; ++i) {
+        result.push_back(longer[i]);
+    }
+
+    return result;
 }
-// testing:
+
+// 🔍 Test the function
 int main() 
 {
-    vector <int> v1Numbers = {1, 2, 3};
-    vector <int> v2Numbers = {4, 5, 6, 7};
-    vector <int> vSummed = add2vectors(v1Numbers, v2Numbers); // output : {5, 7, 9, 7}
-    for (int &num : vSummed)
-    {
-            cout << num << "  ";
+    vector<int> v1Numbers = {1, 2, 3};
+    vector<int> v2Numbers = {4, 5, 6, 7};
+
+    vector<int> vSummed = add2vectors(v1Numbers, v2Numbers); // Expected: {5, 7, 9, 7}
+
+    for (int& num : vSummed) {
+        cout << num << "  ";
     }
+    cout << endl;
+
+    return 0;
 }
 
-// Written by Sidi Abdullah Lemrabott (MAPS)
+// 🖊️ Written by: Sidi Abdullah Lemrabott (MAPS)
