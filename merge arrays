@@ -1,0 +1,37 @@
+// Problem: merge 2 arrays by adding every array elemnt to the coresponding one in the other array
+// example:
+// {4, 2, 1}
+// {1, 5, 3, 2, 6} --> 
+// {4 + 1, 2 + 5, 1 + 3, 2, 6} = {5, 7, 4, 2, 6}
+// solution:
+// we want a vector like this : {v1[0] + v2[0], v1[1] + v2[1], ..., v1[maxSize - 1] + v2[i], v2[i + 1], ..., v2[maxSize - 1]}.
+// Note: with consedering v2.size() > v1.size()
+
+// vector<int> add2vectors(vector<int> &v1, vector<int> &v2)
+// {
+    //     int minSize = (v1.size() < v2.size()) ? v1.size() : v2.size();
+//     int maxSize = max(v1.size(), v2.size());
+
+//     vector<int> v;
+//     for (int i = 0; i < minSize; i++)
+//     {
+//         v.push_back(v1[i] + v2[i]);
+//     }
+//     vector<int> &longer = (v1.size() > v2.size()) ? v1 : v2;
+//     for (int i = minSize; i < maxSize; i++)
+//     {
+//         v.push_back(longer[i]);
+//     }
+
+//     return v;
+// }
+// int main() 
+// {
+    //     vector <int> x = {1, 2, 3};
+//     vector <int> y = {4, 5, 6, 7};
+//     vector <int> v = add2vectors(x, y); // output : {5, 7, 9, 7}
+//     for (int &i : v)
+//     {
+    //         cout << i << "  ";
+//     }
+// }
