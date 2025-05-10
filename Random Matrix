@@ -1,0 +1,62 @@
+// Problem: Create a random matrix based on the number of rows and columns given by the user.
+// Example: if the user enters rows = 2 and columns = 3, the output could be:
+//  31   12   10
+//  40    7   21
+// The numbers will be different each time you run the program.
+
+/*
+    Steps to solve:
+    1. Ask the user to enter how many rows and columns they want.
+    2. Create a matrix with the given size and fill it with random numbers from 1 to 100.
+    3. Print the matrix in a clean format.
+*/
+
+#include <iostream>
+#include <iomanip>
+#include <cstdlib>  // for rand(), srand()
+#include <ctime>    // for time()
+
+using namespace std;
+
+// Return a random number between 'from' and 'to'
+int randomInt(int from, int to) {
+    return rand() % (to - from + 1) + from;
+}
+
+// Generate and print the matrix
+void printRandomMatrix(int rows, int cols) {
+    int arr[rows][cols];
+
+    // Fill the matrix with random numbers
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            arr[i][j] = randomInt(1, 100);
+        }
+    }
+
+    // Print the matrix
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << setw(5) << arr[i][j];
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    // Use the current time to make random numbers different each time
+    srand((unsigned)time(0));
+
+    int rows, cols;
+
+    // Step 1: Get input from the user
+    cout << "Enter number of rows: ";
+    cin >> rows;
+
+    cout << "Enter number of columns: ";
+    cin >> cols;
+
+    // Step 2 & 3: Generate and display the matrix
+    cout << "\nHere is your " << rows << " x " << cols << " random matrix:\n";
+    printRandomMatrix(rows, cols);
+}
