@@ -1,0 +1,242 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void AllToUpper(string str)
+{
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (int(str[i]) >= 97 && int(str[i]) <= 122)
+        {
+            cout << char(int(str[i]) - 32);
+        }
+        else if (str[i] == ' ')
+        {
+            cout << " ";
+        }
+    }
+    cout << endl;
+}
+void AllToLower(string str)
+{
+    for (int i = 0; i < str.length(); i++)
+    {
+        if (int(str[i]) >= 65 && int(str[i]) <= 90)
+        {
+            cout << char(int(str[i]) + 32);
+        }
+        else if (str[i] == ' ')
+        {
+            cout << " ";
+        }
+    }
+    cout << endl;
+}
+char CharToLower(char ch)
+{
+    if (ch >= 'A' && ch <= 'Z')
+    {
+        ch = char(ch + 32);
+    }
+    return ch;
+}
+void InvertCase(string str)
+{
+    for (char &ch : str)
+    {
+        if (int(ch) >= 97 && int(ch) <= 122)
+        {
+            cout << char(int(ch) - 32);
+        }
+        else if (int(ch) >= 65 && int(ch) <= 90)
+        {
+            cout << char(int(ch) + 32);
+        }
+        else if (ch == ' ')
+        {
+            cout << " ";
+        }
+    }
+    cout << endl;
+}
+char InvertCase(char ch)
+{
+    if (int(ch) >= 97 && int(ch) <= 122)
+    {
+        return char(int(ch) - 32);
+    }
+    else if (int(ch) >= 65 && int(ch) <= 90)
+    {
+        return char(int(ch) + 32);
+    }
+    return ch;
+}
+//
+void CountLetters(string str)
+{
+    short SmallCounter = 0, capitalCounter = 0;
+    for (char &ch : str)
+    {
+        if (int(ch) >= 97 && int(ch) <= 122)
+        {
+            ++SmallCounter;
+        }
+        else if (int(ch) >= 65 && int(ch) <= 90)
+        {
+            ++capitalCounter;
+        }
+    }
+    cout << "The number of small letters is: " << SmallCounter << endl;
+    cout << "The number of capital letters is: " << capitalCounter << endl;
+}
+int countLetter(string str, char letter, bool justTheMatches = true)
+{
+    short counter = 0;
+    if (!justTheMatches)
+    {
+        for (char &ch : str)
+        {
+            if (ch == letter or letter == InvertCase(ch))
+            {
+                ++counter;
+            }
+        }
+    }
+    else
+    {
+        for (char &ch : str)
+        {
+            if (ch == letter)
+            {
+                ++counter;
+            }
+        }
+    }
+    return counter;
+}
+bool isVowel(char ch)
+{
+    ch = CharToLower(ch);
+    return (ch == 'a' || ch == 'e' || ch == 'u' || ch == 'i' || ch == 'o');
+}
+short countVowels(string str)
+{
+    short counter = 0;
+    for (char &ch : str)
+    {
+        if (isVowel(ch))
+        {
+            ++counter;
+        }
+    }
+    return counter;
+}
+void PrintVowels(string str)
+{
+    for (char &ch : str)
+    {
+        if (isVowel(ch))
+        {
+            cout << "   " << ch;
+        }
+    }
+}
+// split the string words
+void cleanSpaces(string &s)
+{
+    for (int i = 0; i < s.length() - 1;)
+    {
+        if (s[i] == ' ' && s[i + 1] == ' ')
+            s.erase(i, 1);
+        else
+            i++;
+    }
+    if (!s.empty() && s.front() == ' ')
+        s.erase(0, 1);
+    if (!s.empty() && s.back() == ' ')
+        s.pop_back();
+}
+string trimLeft(string &s)
+{
+    while (!s.empty(), s.front() == ' ')
+    {
+        s.erase(0, 1);
+    }
+    return s;
+}
+string trimRight(string &s)
+{
+    while (!s.empty(), s.back() == ' ')
+    {
+        s.erase(s.length() - 1, 1);
+    }
+    return s;
+}
+//
+void printFirstLetters(string s)
+{
+    cleanSpaces(s);
+    if (!s.empty())
+        cout << s[0] << '\n';
+    for (int i = 1; i < s.length() - 1; ++i)
+        if (s[i] == ' ')
+            cout << s[i + 1] << '\n';
+}
+short countStrWords(string &s)
+{
+    cleanSpaces(s);
+    short counter = 0;
+    for (char &ch : s)
+    {
+        if (ch == ' ')
+        {
+            ++counter;
+        }
+    }
+    return counter + 1;
+}
+void PrintStringWords(string &str)
+{
+    cleanSpaces(str);
+    for (short i = 0; i < str.length(); i++)
+    {
+        if (str[i] != ' ')
+        {
+            cout << str[i];
+        }
+        else
+        {
+            cout << endl;
+        }
+    }
+}
+void printInvertedFirstLetters(string s)
+{
+    cleanSpaces(s);
+    if (!s.empty())
+        cout << s[0] << '\n';
+    for (int i = 1; i < s.length() - 1; ++i)
+        if (s[i] == ' ')
+            cout << InvertCase(s[i + 1]) << '\n';
+}
+vector<string> vSplit(string &s, char seperator)
+{
+    cleanSpaces(s);
+    s += seperator;
+    string word;
+    vector<string> v;
+    for (char &ch : s)
+    {
+        if (ch != seperator)
+        {
+            word += ch;
+        }
+        else if (word != "")
+        {
+            v.push_back(word);
+            word = "";
+        }
+    }
+    return v;
+}
+
