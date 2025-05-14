@@ -141,7 +141,7 @@ void PrintVowels(string str)
         }
     }
 }
-// split the string words
+// trim (delete white spaces)
 void cleanSpaces(string &s)
 {
     for (int i = 0; i < s.length() - 1;)
@@ -158,7 +158,7 @@ void cleanSpaces(string &s)
 }
 string trimLeft(string &s)
 {
-    while (!s.empty(), s.front() == ' ')
+    while (!s.empty() && s.front() == ' ')
     {
         s.erase(0, 1);
     }
@@ -166,9 +166,9 @@ string trimLeft(string &s)
 }
 string trimRight(string &s)
 {
-    while (!s.empty(), s.back() == ' ')
+    while (!s.empty() && s.back() == ' ')
     {
-        s.erase(s.length() - 1, 1);
+        s.pop_back();
     }
     return s;
 }
@@ -219,6 +219,7 @@ void printInvertedFirstLetters(string s)
         if (s[i] == ' ')
             cout << InvertCase(s[i + 1]) << '\n';
 }
+// split the string words
 vector<string> vSplit(string &s, char seperator)
 {
     cleanSpaces(s);
@@ -239,4 +240,16 @@ vector<string> vSplit(string &s, char seperator)
     }
     return v;
 }
-
+// join string words
+string joinStrWords(vector <string> &vStr, string seperator){
+    string newStr;
+        for (string &str : vStr){
+            if (str != vStr.back()){
+                newStr += str + seperator;
+            }
+            else{
+                newStr += str;
+            }
+        }
+    return newStr;
+}
