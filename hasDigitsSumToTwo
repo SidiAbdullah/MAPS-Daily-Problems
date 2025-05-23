@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+/*
+  Write a program that checks if there are a number in 
+  the given vector has digits that sum to 2.
+
+  Example:
+    Input: {12, 1, 11, 22}
+    Output: true  (Because 11 → 1 + 1 = 2)
+*/
+bool hasDigitsSumToTwo(const vector<int> &vNumbers)
+{
+  for (int i = 0; i < vNumbers.size(); i++)
+  {
+    if (vNumbers[i] >= 10)
+    {
+      string strNumber = to_string(vNumbers[i]); // to loop through that number
+      int digitsSum = 0;
+
+      for (char ch : strNumber)
+      {
+        digitsSum += ch - '0';  // Convert char to int
+      }
+
+      if (digitsSum == 2) {
+        cout << "Match found: " << vNumbers[i] << " => digits sum to 2\n";
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+int main() {
+  vector<int> vNums = {12, 1, 11, 22};
+  cout << boolalpha << hasDigitsSumToTwo(vNums);
+  // Output:
+  // Match found: 11 => digits sum to 2
+  //true
+}
+
+// Solved by Sidi Abdullah Lemrabott - (MAP)
