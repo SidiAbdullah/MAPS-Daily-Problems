@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int min( vector<int> &vNumbers){
+  if (vNumbers.empty()) {
+    throw invalid_argument("Vector is empty");
+  }
+  int minNumber = vNumbers[0]; // supposing it is the first
+  for ( int &num : vNumbers){
+    if (minNumber > num) minNumber = num;
+  }
+  return minNumber;
+}
+
+vector<int> removeSmallest(vector<int>& numbers) {
+  vector<int> numbersCopy = numbers;
+  for (int i = 0; i < numbersCopy.size(); i++){
+    numbers.pop_back();
+  }
+  //numbers.clear();
+  
+  int minNumber = min(numbersCopy);
+  for ( int &num : numbersCopy){
+    if (num != minNumber) numbers.push_back(num);
+  }
+  return numbers;
+}
+
+
+int main (){
+  vector <int> v = {22, 11, 12, 33, 2};
+  vector <int> newV = removeSmallest(v);
+  for ( int &num : newV){
+      cout << num << "  " << endl;
+  }
+}
+
+Sidi Abdullah Lemrabott - MAP
