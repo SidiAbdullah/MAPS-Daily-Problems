@@ -1,9 +1,9 @@
 problem source : https://www.codewars.com/kata/563cf89eb4747c5fb100001b
 // Removes the smallest number from a vector
-// Example: {22, 2, 5, 6} -> {22, 5, 6}
+// Example: {22, 2, 5, 6, 2} -> {22, 5, 6}
 
 // solution:
-// 1. Find the smallest number
+// 1. Find the smallest number of the given vector
 // 2. Add every element that is different to the smallest number into a new vector
 // 3. Replace the original vector with the new one.
 // Notice: we can remove the bigger number with the same logic
